@@ -34,12 +34,14 @@ public class StreamParser {
 
             for (int i = 0; i < booksStrings.length; i++) {
                 String bookStr = booksStrings[i].trim();
-                if (bookStr.isEmpty()) continue;
+                if (bookStr.isEmpty())
+                    continue;
 
                 String[] bookParts = bookStr.split(", ");
 
                 if (bookParts.length < 4) {
-                    String msg = String.format("Ошибка в строке %d, книга %d: ожидается как минимум 4 поля (Название, Автор, Страницы, Год), найдено %d. Данные: '%s'", 
+                    String msg = String.format(
+                            "Ошибка в строке %d, книга %d: ожидается как минимум 4 поля (Название, Автор, Страницы, Год), найдено %d. Данные: '%s'",
                             lineNum, i + 1, bookParts.length, bookStr);
                     LOGGER.log(Level.SEVERE, msg);
                     throw new RuntimeException(msg);
@@ -49,7 +51,7 @@ public class StreamParser {
                     String yearStr = bookParts[bookParts.length - 1].replace(".", "").trim();
                     String pagesStr = bookParts[bookParts.length - 2].trim();
                     String author = bookParts[bookParts.length - 3].trim();
-                    
+
                     String[] titleParts = Arrays.copyOfRange(bookParts, 0, bookParts.length - 3);
                     String title = String.join(", ", titleParts).replace("\"", "").trim();
 
@@ -58,7 +60,8 @@ public class StreamParser {
 
                     listBooks.add(new Book(title, author, pages, year));
                 } catch (NumberFormatException e) {
-                    String msg = String.format("Ошибка в строке %d, книга %d: некорректное числовое значение (страницы или год). Данные: '%s'. Причина: %s", 
+                    String msg = String.format(
+                            "Ошибка в строке %d, книга %d: некорректное числовое значение (страницы или год). Данные: '%s'. Причина: %s",
                             lineNum, i + 1, bookStr, e.getMessage());
                     LOGGER.log(Level.SEVERE, msg, e);
                     throw new RuntimeException(msg, e);

@@ -13,21 +13,22 @@ public class Main {
     static final String rscName = "hw2.txt";
     static final int filterYear = 2000;
     static final int filterLimit = 3;
-    
+
     private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) throws IOException {
         /**
-        * Получение строк в FileReader
-        * Парсинг в экземпляры Student в StreamParser
-        * Main - вывод
-        */ 
+         * Получение строк в FileReader
+         * Парсинг в экземпляры Student в StreamParser
+         * Main - вывод
+         */
 
         try (Stream<String> input = FileReader.readFile(rscName)) {
-            
+
             AtomicInteger lineNum = new AtomicInteger(1);
 
-            List<Student> students = input.map(line -> StreamParser.parse(line, lineNum.getAndIncrement())).collect(Collectors.toList());
+            List<Student> students = input.map(line -> StreamParser.parse(line, lineNum.getAndIncrement()))
+                    .collect(Collectors.toList());
 
             students.stream()
                     .peek(System.out::println)
@@ -41,7 +42,8 @@ public class Main {
                     .findFirst()
                     .ifPresentOrElse(
                             year -> System.out.println("Найден год выпуска: " + year),
-                            () -> System.out.println(String.format("Книга, выпущенная после %d года, отсутствует в выборке", filterYear)));
+                            () -> System.out.println(String
+                                    .format("Книга, выпущенная после %d года, отсутствует в выборке", filterYear)));
 
         } catch (RuntimeException e) {
             LOGGER.log(Level.SEVERE, "Критическая ошибка при обработке данных: " + e.getMessage(), e);
