@@ -10,9 +10,9 @@ public class Book {
 
     public Book(String name, String author, int pages, int year) {
         this.name = Objects.requireNonNull(name, "Название книги не должно быть пустым");
-        this.author = author; // допустим есть книги без автора
+        this.author = author;
         this.pages = pages;
-        this.year = year; // допустим есть книги без чёткого года выпуска
+        this.year = year;
     }
 
     public String getName() {
@@ -63,10 +63,5 @@ public class Book {
     @Override
     public String toString() {
         return "Book{ name=" + name + ", author=" + author + ", pages=" + pages + ", year=" + year + "}";
-    }
-
-    public boolean compareTo(Book bigBook, Book smallBook) {
-        if (bigBook.pages >= smallBook.pages) return true;
-        else return false;
     }
 }
