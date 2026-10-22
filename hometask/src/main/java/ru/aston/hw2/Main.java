@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
-    static final String rscName = "hw2.txt";
-    static final int filterYear = 2000;
-    static final int filterLimit = 3;
+    private static final String RESOURCE_NAME = "hw2.txt";
+    private static final int PUBLISHED_AFTER_YEAR = 2000;
+    private static final int BOOKS_LIMIT = 3;
 
     private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 
@@ -23,7 +23,7 @@ public class Main {
          * Main - вывод
          */
 
-        try (Stream<String> input = FileReader.readFile(rscName)) {
+        try (Stream<String> input = FileReader.readFile(RESOURCE_NAME)) {
 
             AtomicInteger lineNum = new AtomicInteger(1);
 
@@ -36,14 +36,14 @@ public class Main {
                     .flatMap(List::stream)
                     .sorted(Comparator.comparingInt(Book::getPages))
                     .distinct()
-                    .filter(book -> book.getYear() > filterYear)
-                    .limit(filterLimit)
+                    .filter(book -> book.getYear() > PUBLISHED_AFTER_YEAR)
+                    .limit(BOOKS_LIMIT)
                     .map(Book::getYear)
                     .findFirst()
                     .ifPresentOrElse(
                             year -> System.out.println("Найден год выпуска: " + year),
                             () -> System.out.println(String
-                                    .format("Книга, выпущенная после %d года, отсутствует в выборке", filterYear)));
+                                    .format("Книга, выпущенная после %d года, отсутствует в выборке", PUBLISHED_AFTER_YEAR)));
 
         } catch (RuntimeException e) {
             LOGGER.log(Level.SEVERE, "Критическая ошибка при обработке данных: " + e.getMessage(), e);

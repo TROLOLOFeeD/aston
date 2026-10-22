@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import ru.aston.hw3.Adapter.Burger;
+import ru.aston.hw3.Adapter.BurgerBuilder;
+import ru.aston.hw3.Adapter.PizzaAdapter2Burger;
 import ru.aston.hw3.Builder.Pizza;
 import ru.aston.hw3.Builder.PizzaBuilder;
 import ru.aston.hw3.Builder.Topping;
@@ -26,5 +29,18 @@ public class Main {
         System.out.println(pizza2);
         System.out.println(pizza3);
 
+
+        // Адаптер
+
+        BurgerBuilder builder = new PizzaAdapter2Burger();
+        
+        Burger burger = builder
+            .addToping("Котлетос говяжий", 1)
+            .addCheese()
+            .addTomato()
+            .addSauce("ketchup")
+            .build();
+        
+        System.out.println(burger);
     }
 }

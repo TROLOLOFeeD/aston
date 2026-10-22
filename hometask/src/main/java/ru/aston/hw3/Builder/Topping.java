@@ -9,6 +9,14 @@ public class Topping {
         this.quantity = quantity;
     }
 
+    public String getProduct() {
+        return new String(product);
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
     public Topping(String product) {
         this.product = new String(product);
     }

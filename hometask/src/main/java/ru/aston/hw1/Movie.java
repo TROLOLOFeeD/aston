@@ -22,7 +22,7 @@ public final class Movie {
     }
 
     @Override
-    public int hashCode() {// автоматическая генерация
+    public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -31,7 +31,7 @@ public final class Movie {
     }
 
     @Override
-    public boolean equals(Object obj) {// автоматическая генерация
+    public boolean equals(Object obj) {
         if (this == obj)
             return true;
         if (obj == null)
@@ -54,9 +54,6 @@ public final class Movie {
 
     @Override
     public String toString() {
-        // запомнить: Date можно передавать без нового
-        // объекта так как возвращается не ссылка а
-        // строка из него
         return "Movie{" + "name=" + this.name + ", date=" + date + "}";
     }
 
