@@ -22,7 +22,7 @@ public final class Movie {
     }
 
     @Override
-    public int hashCode() {// автоматическая генерация
+    public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -31,7 +31,7 @@ public final class Movie {
     }
 
     @Override
-    public boolean equals(Object obj) {// автоматическая генерация
+    public boolean equals(Object obj) {
         if (this == obj)
             return true;
         if (obj == null)
@@ -54,9 +54,6 @@ public final class Movie {
 
     @Override
     public String toString() {
-        // запомнить: Date можно передавать без нового
-        // объекта так как возвращается не ссылка а
-        // строка из него
         return "Movie{" + "name=" + this.name + ", date=" + date + "}";
     }
 
@@ -65,15 +62,15 @@ public final class Movie {
 
         Movie mov1 = new Movie("Calaharro", date);
 
-        System.out.println(mov1.getDate() == date); // False - не одна и та же ссылка
-        System.out.println(mov1.getDate().getTime() == date.getTime()); // True - одна и та же дата
+        System.out.println(mov1.getDate() == date);
+        System.out.println(mov1.getDate().getTime() == date.getTime());
 
         date.setTime(1212121212121L);
 
-        System.out.println(mov1.getDate().getTime() == date.getTime()); // false - не изменился
+        System.out.println(mov1.getDate().getTime() == date.getTime());
 
         date = mov1.getDate();
         date.setTime(1212121212121L);
-        System.out.println(mov1.getDate().getTime() == date.getTime()); // false - не изменился
+        System.out.println(mov1.getDate().getTime() == date.getTime());
     }
 }

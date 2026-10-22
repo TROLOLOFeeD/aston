@@ -49,10 +49,13 @@ public class Book {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || this.getClass() != obj.getClass()) return false;
-        Book other = (Book)obj;
-        return Objects.equals(this.name, other.name) && Objects.equals(this.author, other.author) && Objects.equals(this.pages, other.pages) && Objects.equals(this.year, other.year);
+        if (this == obj)
+            return true;
+        if (obj == null || this.getClass() != obj.getClass())
+            return false;
+        Book other = (Book) obj;
+        return Objects.equals(this.name, other.name) && Objects.equals(this.author, other.author)
+                && Objects.equals(this.pages, other.pages) && Objects.equals(this.year, other.year);
     }
 
     @Override

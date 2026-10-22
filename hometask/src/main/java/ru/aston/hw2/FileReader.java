@@ -11,9 +11,9 @@ import java.util.stream.Stream;
 
 public class FileReader {
     // Получение стрим-строк из файла
-    
+
     private static final Logger LOGGER = Logger.getLogger(FileReader.class.getName());
-    
+
     public static Stream<String> readFile(String resourceName) throws FileNotFoundException {
         InputStream in = FileReader.class.getClassLoader().getResourceAsStream(resourceName);
         if (in == null) {
