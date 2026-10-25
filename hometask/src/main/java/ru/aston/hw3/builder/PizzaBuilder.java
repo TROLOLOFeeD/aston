@@ -3,13 +3,15 @@ package ru.aston.hw3.builder;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class PizzaBuilder {
+import ru.aston.hw3.decorator.PizzaBuilderInterface;
+
+public class PizzaBuilder implements PizzaBuilderInterface {
     protected final Map<String, Integer> toppings = new LinkedHashMap<>();
     protected boolean hasCheese = false;
     protected boolean hasTomato = false;
     protected String sauce = "без соуса";
 
-    public PizzaBuilder addTopping(String product, int quantity) {
+    public PizzaBuilderInterface addTopping(String product, int quantity) {
         if (product == null || product.isBlank()) {
             throw new IllegalArgumentException("Название топпинга не может быть пустым");
         }
@@ -20,7 +22,7 @@ public class PizzaBuilder {
         return this;
     }
 
-    public PizzaBuilder addToppings(Map<String, Integer> toppings) {
+    public PizzaBuilderInterface addToppings(Map<String, Integer> toppings) {
         if (toppings == null) {
             throw new IllegalArgumentException("Список начинок не должен быть null");
         }
@@ -30,19 +32,22 @@ public class PizzaBuilder {
         return this;
     }
 
-    public PizzaBuilder addCheese() {
+    public PizzaBuilderInterface addCheese() {
         this.hasCheese = true;
         addTopping("Сыр", 1);
         return this;
     }
 
-    public PizzaBuilder addTomato() {
+    public PizzaBuilderInterface addTomato() {
         this.hasTomato = true;
         addTopping("Помидор", 1);
         return this;
     }
 
-    public PizzaBuilder withSauce(String sauceType) {
+    public PizzaBuilderInterface withSauce(String sauceType) {
+        if (sauceType == null || sauceType.isBlank()) {
+            throw new IllegalArgumentException("Название соуса не может быть пустым");
+        }
         this.sauce = sauceType;
         return this;
     }

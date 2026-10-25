@@ -14,6 +14,12 @@ public class Pizza2BurgerAdapter implements BurgerBuilder {
 
     @Override
     public BurgerBuilder addIngredient(String ingredient, int quantity) {
+        if (ingredient == null || ingredient.isBlank()) {
+            throw new IllegalArgumentException("Название ингредиента не может быть пустым");
+        }
+        if (quantity <= 0) {
+            throw new IllegalArgumentException("Количество ингредиента должно быть больше 0");
+        }
         pizzaBuilder.addTopping(ingredient, quantity);
         return this;
     }
@@ -52,6 +58,9 @@ public class Pizza2BurgerAdapter implements BurgerBuilder {
 
     @Override
     public BurgerBuilder withSauce(String sauceType) {
+        if (sauceType == null || sauceType.isBlank()) {
+            throw new IllegalArgumentException("Название соуса не может быть пустым");
+        }
         pizzaBuilder.withSauce(sauceType);
         return this;
     }
