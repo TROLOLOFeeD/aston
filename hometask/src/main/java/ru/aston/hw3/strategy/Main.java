@@ -19,25 +19,22 @@ public class Main {
         proxy1.addCheese();
         proxy1.addTopping("Пепперони", 2);
         proxy1.pay();
-        proxy1.build();
-        System.out.println(proxy1);
+        System.out.println("Результат: " + proxy1.build() + "\n");
 
-        System.out.println("\n2. Заказ в 22:30 (Стратегия со скидкой 20%):");
+        System.out.println("2. Заказ в 22:30 (Стратегия со скидкой 20%):");
         Pricer discountPricer = new LastHourDiscount(LocalTime.of(22, 0), 20.0);
         PizzaBuilderProxy proxy2 = new PizzaBuilderProxy(baseBuilder, validation, discountPricer, LocalTime.of(22, 30));
 
         proxy2.addCheese();
         proxy2.addTopping("Пепперони", 2);
         proxy2.pay();
-        proxy2.build();
-        System.out.println(proxy2);
+        System.out.println("Результат: " + proxy2.build() + "\n");
 
-        System.out.println("\n3. Заказ в 18:00 со стратегией скидки (скидка НЕ должна примениться):");
+        System.out.println("3. Заказ в 18:00 со стратегией скидки (скидка НЕ должна примениться):");
         PizzaBuilderProxy proxy3 = new PizzaBuilderProxy(baseBuilder, validation, discountPricer, LocalTime.of(18, 0));
 
         proxy3.addTomato();
         proxy3.pay();
-        proxy3.build();
-        System.out.println(proxy3);
+        System.out.println("Результат: " + proxy3.build());
     }
 }

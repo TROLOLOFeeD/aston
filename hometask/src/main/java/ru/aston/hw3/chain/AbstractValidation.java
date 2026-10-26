@@ -12,7 +12,7 @@ public abstract class AbstractValidation implements Validation {
         return handler;
     }
 
-    protected void checkNext(LocalTime orderTime, OrderType orderType) throws RuntimeException {
+    protected void checkNext(LocalTime orderTime, OrderType orderType) {
         if (nextHandler != null) {
             nextHandler.validate(orderTime, orderType);
         }

@@ -13,7 +13,7 @@ public class WorkingHours extends AbstractValidation {
     }
 
     @Override
-    public void validate(LocalTime orderTime, OrderType orderType) throws RuntimeException {
+    public void validate(LocalTime orderTime, OrderType orderType) {
         if (orderTime.isBefore(openTime) || orderTime.isAfter(closeTime)) {
             throw new RuntimeException(
                     "Заказ отклонен: мы не работаем в это время (" + orderTime + "). " +
